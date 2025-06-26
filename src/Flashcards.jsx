@@ -1,89 +1,156 @@
 import { useState } from 'react';
 import './Flashcards.css';
 
-const jokes = [
+const sweTrivia = [
   {
-    question: "Why don't scientists trust atoms?",
-    answer: "Because they make up everything!"
+    question: "What is the popular platform for coding interviews and practice problems?",
+    answer: "LeetCode"
   },
   {
-    question: "What did the ocean say to the beach?",
-    answer: "Nothing, it just waved!"
+    question: "What is the popular version control system used by most companies?",
+    answer: "Git"
   },
   {
-    question: "Why did the scarecrow win an award?",
-    answer: "Because he was outstanding in his field!"
+    question: "What is the popular code hosting platform owned by Microsoft?",
+    answer: "GitHub"
   },
   {
-    question: "What do you call a fake noodle?",
-    answer: "An impasta!"
+    question: "What is the popular database query language?",
+    answer: "SQL"
   },
   {
-    question: "How does a penguin build its house?",
-    answer: "Igloos it together!"
+    question: "What is the popular JavaScript runtime environment?",
+    answer: "Node.js"
   },
   {
-    question: "Why did the math book look so sad?",
-    answer: "Because it had too many problems!"
+    question: "What is the popular package manager for JavaScript?",
+    answer: "npm"
   },
   {
-    question: "What do you call a bear with no teeth?",
-    answer: "A gummy bear!"
+    question: "What is the popular frontend framework by Facebook?",
+    answer: "React"
   },
   {
-    question: "Why don't eggs tell jokes?",
-    answer: "They'd crack each other up!"
+    question: "What is the popular backend framework for Python?",
+    answer: "Django"
   },
   {
-    question: "What do you call a fish with no eyes?",
-    answer: "Fsh!"
+    question: "What is the popular cloud platform by Amazon?",
+    answer: "AWS"
   },
   {
-    question: "Why did the cookie go to the doctor?",
-    answer: "Because it was feeling crumbly!"
+    question: "What is the popular containerization platform?",
+    answer: "Docker"
   }
 ];
 
 function Flashcards() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [userGuess, setUserGuess] = useState('');
+  const [feedback, setFeedback] = useState(''); // 'correct', 'incorrect', or ''
+  const [hasGuessedCorrectly, setHasGuessedCorrectly] = useState(false);
 
-  const handleCardClick = () => {
-    setIsFlipped(!isFlipped);
+  const currentCard = sweTrivia[currentCardIndex];
+
+  const handleInputChange = (e) => {
+    setUserGuess(e.target.value);
+    setFeedback('');
+  };
+
+  const handleGuessSubmit = (e) => {
+    e.preventDefault();
+    // Case-insensitive, trimmed match
+    if (userGuess.trim().toLowerCase() === currentCard.answer.trim().toLowerCase()) {
+      setFeedback('correct');
+      setHasGuessedCorrectly(true);
+      setIsFlipped(true);
+    } else {
+      setFeedback('incorrect');
+      setHasGuessedCorrectly(false);
+      setIsFlipped(false);
+    }
   };
 
   const handleNextCard = () => {
-    setCurrentCardIndex((prevIndex) => (prevIndex + 1) % jokes.length);
-    setIsFlipped(false);
+    if (currentCardIndex < sweTrivia.length - 1) {
+      setCurrentCardIndex(currentCardIndex + 1);
+      setIsFlipped(false);
+      setUserGuess('');
+      setFeedback('');
+      setHasGuessedCorrectly(false);
+    }
+  };
+
+  const handlePrevCard = () => {
+    if (currentCardIndex > 0) {
+      setCurrentCardIndex(currentCardIndex - 1);
+      setIsFlipped(false);
+      setUserGuess('');
+      setFeedback('');
+      setHasGuessedCorrectly(false);
+    }
   };
 
   return (
     <div className="flashcards-container">
       <div className="flashcards-header">
-        <h1>Joke Flashcards</h1>
-        <p>Test your sense of humor with these classic jokes!</p>
-        <p className="card-count">Card {currentCardIndex + 1} of {jokes.length}</p>
+        <h1>SWE Internship Trivia</h1>
+        <p>Test your knowledge of popular tools and platforms used in software engineering!</p>
+        <p className="card-count">Card {currentCardIndex + 1} of {sweTrivia.length}</p>
       </div>
 
-      <div 
-        className={`flashcard ${isFlipped ? 'flipped' : ''}`} 
-        onClick={handleCardClick}
+      <div
+        className={`flashcard ${isFlipped ? 'flipped' : ''} ${feedback === 'correct' ? 'correct' : ''} ${feedback === 'incorrect' ? 'incorrect' : ''}`}
+        // Only allow manual flip if correct
+        onClick={() => hasGuessedCorrectly && setIsFlipped(!isFlipped)}
+        style={{ pointerEvents: hasGuessedCorrectly ? 'auto' : 'none' }}
       >
         <div className="flashcard-inner">
           <div className="flashcard-front">
             <h2>Question:</h2>
-            <p>{jokes[currentCardIndex].question}</p>
+            <p>{currentCard.question}</p>
           </div>
           <div className="flashcard-back">
             <h2>Answer:</h2>
-            <p>{jokes[currentCardIndex].answer}</p>
+            <p>{currentCard.answer}</p>
           </div>
         </div>
       </div>
 
-      <button className="next-button" onClick={handleNextCard}>
-        Next Joke
-      </button>
+      <form className="guess-form" onSubmit={handleGuessSubmit} autoComplete="off">
+        <label htmlFor="guess-input">Your Answer:</label>
+        <input
+          id="guess-input"
+          type="text"
+          value={userGuess}
+          onChange={handleInputChange}
+          disabled={hasGuessedCorrectly}
+          className={feedback}
+        />
+        <button type="submit" disabled={hasGuessedCorrectly || userGuess.trim() === ''}>
+          Submit
+        </button>
+      </form>
+      {feedback === 'correct' && <div className="feedback correct">Correct! 🎉</div>}
+      {feedback === 'incorrect' && <div className="feedback incorrect">Try again!</div>}
+
+      <div className="nav-buttons">
+        <button
+          className="nav-button"
+          onClick={handlePrevCard}
+          disabled={currentCardIndex === 0}
+        >
+          Previous
+        </button>
+        <button
+          className="nav-button"
+          onClick={handleNextCard}
+          disabled={currentCardIndex === sweTrivia.length - 1}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }

@@ -1,14 +1,16 @@
-# Joke Flashcards
+# SWE Internship Trivia Flashcards
 
-A modern, interactive flashcard application built with React and Vite. This application allows users to study jokes through an engaging flashcard interface.
+A modern, interactive flashcard application built with React and Vite. This application helps software engineering interns and students test their knowledge of popular tools, platforms, and concepts used in the industry.
 
 ## Features
 
 - Interactive card flipping animation
-- Sequential navigation through 10 classic jokes
+- Sequential navigation through 10 SWE trivia questions
+- User input for answers with immediate feedback
 - Clean, modern UI with a warm color scheme
 - Responsive design that works on all devices
 - Smooth transitions and animations
+- Visual feedback for correct/incorrect answers
 
 ## Technologies Used
 
@@ -39,10 +41,21 @@ npm run dev
 
 ## How to Use
 
-- Click on a card to flip it and see the answer
-- Click the "Next Joke" button to move to the next card
-- Cards progress sequentially through the collection
-- The counter shows your current position in the deck
+- Read the question on the front of the card
+- Type your answer in the input box
+- Click "Submit" to check your answer
+- Get immediate feedback (correct/incorrect)
+- The card will flip to show the correct answer after a correct guess
+- Use "Previous" and "Next" buttons to navigate through the cards
+- Navigation buttons are disabled at the beginning and end of the deck
+
+## Topics Covered
+
+- Popular coding platforms (LeetCode, GitHub)
+- Version control systems (Git)
+- Programming languages and frameworks (React, Django, Node.js)
+- Cloud platforms (AWS)
+- Development tools (Docker, npm, SQL)
 
 ## Project Structure
 
