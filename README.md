@@ -1,10 +1,10 @@
-# Web Development Project 3 - *Name of App Here*
+# Web Development Project 3 - *SWE Internship Flashcards*
 
-Submitted by: **Your Name Here**
+Submitted by: **Shubhi Verma**
 
-This web app: **insert description**
+This web app: **is a simple React Typescript website to familiarize yourself with terms related to SWE**
 
-Time spent: **X** hours spent in total
+Time spent: **3** hours spent in total
 
 ## Required Features
 
@@ -25,7 +25,7 @@ The following **optional** features are implemented:
 - [ ] Users can use a shuffle button to randomize the order of the cards
   - Cards should remain in the same sequence (**NOT** randomized) unless the shuffle button is clicked 
   - Cards should change to a random sequence once the shuffle button is clicked
-- [ ] A user’s answer may be counted as correct even when it is slightly different from the target answer
+- [x] A user’s answer may be counted as correct even when it is slightly different from the target answer
   - Answers are considered correct even if they only partially match the answer on the card 
   - Examples: ignoring uppercase/lowercase discrepancies, ignoring punctuation discrepancies, matching only for a particular part of the answer rather than the whole answer
 - [ ] A counter displays the user’s current and longest streak of correct responses
@@ -39,13 +39,20 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you added to improve the site's functionality!
+* [x] There is a label at the top which shows you what card you are on
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<div>
+    <a href="https://www.loom.com/share/da1fde970aa14f8eaff48312e958404b">
+      <p>Flashcard Website Demo for Software Engineering Terms 🚀 - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/da1fde970aa14f8eaff48312e958404b">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/da1fde970aa14f8eaff48312e958404b-8a1fc7e0fde237b5-full-play.gif">
+    </a>
+  </div>
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...  
@@ -57,7 +64,7 @@ Kap
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+N/A.
 
 ## License
 
